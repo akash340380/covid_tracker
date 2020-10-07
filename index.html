@@ -2,24 +2,43 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@700&family=Roboto+Mono&family=Sansita+Swashed:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@700&family=Roboto+Mono:wght@400;500&family=Sansita+Swashed:wght@500&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script language="Javascript" src="jquery.js"></script>
-    <script type="text/JavaScript" src='state.js'></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+
+  <style>
+
+legend {
+    	text-align: center;
+     
+        color: #fff;
+        font-size: 92px;
+        font-family: "ubuntu";
+        text-transform: uppercase;
+        font-weight: 700;
+        font-family: "Josefin Sans", sans-serif;
+        background: linear-gradient(to right, #e72a3a 10%, #fff 50%, #5bdaff 60%);
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 1.5s linear infinite;
+        display: inline-block;
+    
+}
+
+
+  </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script><script>
-  
     function getData() {
-    var state = document.getElementById("listBox").value;
-    var de = document.getElementById("secondlist").value;
+    var state = document.getElementById("state").value;
    $.getJSON('https://api.covidindiatracker.com/state_data.json', function(result){
-
     for(i in result) {
     if(result[i]["state"] == state ) {
     document.getElementById("conf").value = result[i]["confirmed"];
@@ -29,26 +48,6 @@
     break;
     }
     }
- 
-    
-    for(i in result)
-    {
-        for(j in result)
-        {
-            if(result[i]["state"] == state && result[i]["districtData"][j]["name"] == de)
-            {
-
-               document.getElementById("dconf").value = result[i]["districtData"][j]["confirmed"] 
-                
-                
-                break;
-
-            }
-        }
-    }
-
-
-
   });
 }
     </script>
@@ -56,69 +55,78 @@
     td {
     width: 200px;
     font-size: 15px;
-
     }
-    
-
-select{
-    height: 49px;
-    width: 337px;
+    select, input {
+    height: 35px;
+    width: 300px;
     font-size: 15px;
-    padding: 15px;
-    margin: 0px;
-    border-radius: 1000px;
-    font-family: 'Miriam Libre', sans-serif;
-}
-input
-{
-    height: 49px;
-    width: 337px;
-    font-size: 15px;
-    padding: 15px;
-    margin-left: 155px;
-    border-radius: 1000px;
-    font-family: 'Miriam Libre', sans-serif;
-}
-}
-    
+    }
     </style>
 </head>
 
-<body style="padding-top: 21px;">
-<fieldset style="padding-left: 100px; padding-right: 400px;   padding-left: 347px;
-    padding-right: 218px;">
-        <legend align="center">COVID TRACKER</legend>
+<body style="padding-top: 100px;">
+<fieldset style="padding-left: 100px; padding-right: 400px;">
+        <legend class="wrapper" align="center" style="font-family: 'Roboto Mono', monospace font-size: 29px";>COVID TRACKER</legend>
    <table align="center">
     <tr>
-        <select style="margin:25px "; id="listBox" onchange='selct_district(this.value)'></select>
-        <select id='secondlist'></select>
-           
+    <td><label for="state">STATE :</label></td>                                  
+<td>
+<select name="state" id="state">
+<option value="null">--------   SELECT  ---------</option>
+<option value="Andhra Pradesh">Andhra Pradesh</option>
+<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+<option value="Assam">Assam</option>
+<option value="Bihar">Bihar</option>
+<option value="Chhattisgarh">Chhattisgarh</option>
+<option value="Goa">Goa</option>
+<option value="Gujarat">Gujarat</option>
+<option value="Haryana">Haryana</option>
+<option value="Himachal Pradesh">Himachal Pradesh</option>
+<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+<option value="Jharkhand">Jharkhand</option>
+<option value="Karnataka">Karnataka</option>
+<option value="Kerala">Kerala</option>
+<option value="Madhya Pradesh">Madhya Pradesh</option>
+<option value="Maharashtra">Maharashtra</option>
+<option value="Manipur">Manipur</option>
+<option value="Meghalaya">Meghalaya</option>
+<option value="Mizoram">Mizoram</option>
+<option value="Nagaland">Nagaland</option>
+<option value="Odisha">Odisha</option>
+<option value="Punjab">Punjab</option>
+<option value="Rajasthan">Rajasthan</option>
+<option value="Sikkim">Sikkim</option>
+<option value="Tamil Nadu">Tamil Nadu</option>
+<option value="Telangana">Telangana</option>
+<option value="Tripura">Tripura</option>
+<option value="Uttar Pradesh">Uttar Pradesh</option>
+<option value="Uttarakhand">Uttarakhand</option>
+<option value="West Bengal">West Bengal</option>
+</select>
+</td>
 </tr>
-
 <tr>
-<td><label style="font-family: 'Miriam Libre', sans-serif;" for="dconf">DISTICT TOTAL CONFIRMED</label></td>
-<td><input type="text" name="dconf" id="dconf" value="0" disabled /></td>
-</tr>
-<tr>
-<td><label style="font-family: 'Miriam Libre', sans-serif;" for="conf">STATE TOTAL CONFIRMED</label></td>
+<td><label for="conf">TOTAL CONFIRMED</label></td>
 <td><input type="text" name="conf" id="conf" value="0" disabled /></td>
 </tr>
 <tr>
-<td><label style="font-family: 'Miriam Libre', sans-serif;" for="act">STATE ACTIVE CASES</label></td>
+<td><label for="act">ACTIVE CASES</label></td>
 <td><input type="text" name="act" id="act" value="0" disabled /></td>
 </tr>
 <tr>
-<td><label style="font-family: 'Miriam Libre', sans-serif;" for="rec">STATE RECOVERED CASES</label></td>
+<td><label for="rec">RECOVERED CASES</label></td>
 <td><input type="text" name="rec" id="rec" value="0" disabled /></td>
 </tr>
 <tr>
-<td><label style="font-family: 'Miriam Libre', sans-serif;" for="dec">STATE DECEASED CASES</label></td>
+<td><label for="dec">DECEASED CASES</label></td>
 <td><input type="text" name="dec" id="dec" value="0" disabled /></td>
 </tr>
 <tr>
+<td>
+<button onclick="getData()">FETCH DATA</button>
+</td>
+</tr>
 </table>
-<div>
-    <button onclick="getData()">FETCH DATA</button>
 </fieldset>
 </body>
 </html>
